@@ -64,6 +64,9 @@ Organizations:
             Admins:
                 Type: Signature
                 Rule: "OR('Org1MSP.admin')"
+            endorsement:
+                Type: Signature
+                Rule: "OR('OrdererMSP.peer')"
 
         # leave this flag set to true.
         AnchorPeers:
@@ -102,7 +105,7 @@ Organizations:
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
             - Host: peer0.org2.example.com
-              Port: 7051
+              Port: 9051
 
 ################################################################################
 #
@@ -190,6 +193,12 @@ Application: &ApplicationDefaults
         Admins:
             Type: ImplicitMeta
             Rule: "MAJORITY Admins"
+        LifeCycleEndorsement:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Endorsement"
+        endorsement:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Endorsement"
 
 ################################################################################
 #
@@ -249,6 +258,12 @@ Orderer: &OrdererDefaults
         Admins:
             Type: ImplicitMeta
             Rule: "MAJORITY Admins"
+        LifeCycleEndorsement:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Endorsement"
+        endorsement:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Endorsement"
         # BlockValidation specifies what signatures must be included in the block
         # from the orderer for the peer to validate it.
         BlockValidation:
@@ -280,6 +295,14 @@ Channel: &ChannelDefaults
         Admins:
             Type: ImplicitMeta
             Rule: "MAJORITY Admins"
+        
+        LifeCycleEndorsement:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Endorsement"
+            
+        endorsement:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Endorsement"
 
     # Capabilities describes the channel level capabilities, see the
     # dedicated Capabilities section elsewhere in this file for a full
