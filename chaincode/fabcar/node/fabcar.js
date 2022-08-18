@@ -56,6 +56,12 @@ let Chaincode = class {
     console.info('============= START : Initialize Ledger ===========');
     let cars = [];
     cars.push({
+      make: 'Mercedes',
+      model: 'GLE',
+      color: 'black',
+      owner: 'Oubaid'
+    });
+    cars.push({
       make: 'Toyota',
       model: 'Prius',
       color: 'blue',
